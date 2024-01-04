@@ -18,6 +18,7 @@ import java.util.Map;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.PDFView.Configurator;
 import com.github.barteksc.pdfviewer.listener.*;
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.Constants;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
@@ -93,6 +94,8 @@ public class FlutterPDFView implements PlatformView, MethodCallHandler {
                     methodChannel.invokeMethod("onRender", args);
                 }
             }).enableDoubletap(true).defaultPage(getInt(params, "defaultPage")).load();
+
+            config.scrollHandle(new MyScrollHandle(context));
         }
     }
 
